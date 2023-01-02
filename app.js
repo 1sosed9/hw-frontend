@@ -15,17 +15,17 @@ console.log(getAverage(arr1));
 
 // b) Другий спосіб вирішеняя:
 function getAverage1(arr) {
-  if (arr && Array.isArray(arr) && arr.length > 0) {
-    var elementsOfArr = arr.length;
-    var sumOfArrayElements = 0;
-    for (const element of arr) {
-      sumOfArrayElements += element;
+    if (arr && Array.isArray(arr) && arr.length > 0) {
+        var elementsOfArr = arr.length;
+        var sumOfArrayElements = 0;
+        for (const element of arr) {
+            sumOfArrayElements += element;
+        }
+        var result = (sumOfArrayElements / elementsOfArr).toFixed(2);
+        return result;
+    } else {
+        return "You enter not valid value";
     }
-    var result = (sumOfArrayElements / elementsOfArr).toFixed(2);
-    return result;
-  } else {
-    return "You enter not valid value";
-  }
 }
 console.log(getAverage1(arr1));
 console.log();
@@ -45,35 +45,35 @@ console.log();
 var arr2 = [2, 4, 1, 3, 5, 2];
 //  a) Вирішення без зірочки:
 function sortArr(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    for (let k = 0; k < arr.length - 1; k++) {
-      if (arr[k] > arr[k + 1]) {
-        var boofer = arr[k];
-        arr[k] = arr[k + 1];
-        arr[k + 1] = boofer;
-      }
+    for (let i = 0; i < arr.length; i++) {
+        for (let k = 0; k < arr.length - 1; k++) {
+            if (arr[k] > arr[k + 1]) {
+                var boofer = arr[k];
+                arr[k] = arr[k + 1];
+                arr[k + 1] = boofer;
+            }
+        }
     }
-  }
-  return arr;
+    return arr;
 }
 console.log(sortArr(arr2));
 
 // b) Рішення із зірочкой:
 function sortArr1(arr, valueForSort) {
-  if (arr && Array.isArray(arr) && arr.length > 0 && arr[0] == Number(arr[0]) && (valueForSort === "+" || valueForSort === "-")) {
-    switch (valueForSort) {
-      case "+":
-        arr.sort((a, b) => a - b);
-        break;
+    if (arr && Array.isArray(arr) && arr.length > 0 && arr[0] == Number(arr[0]) && (valueForSort === "+" || valueForSort === "-")) {
+        switch (valueForSort) {
+            case "+":
+                arr.sort((a, b) => a - b);
+                break;
 
-      case "-":
-        arr.sort((a, b) => b - a);
-        break;
+            case "-":
+                arr.sort((a, b) => b - a);
+                break;
+        }
+        return arr;
+    } else {
+        return "You enter not valid value";
     }
-    return arr;
-  } else {
-    return "You enter not valid value";
-  }
 }
 console.log(sortArr1(arr2, "-"));
 console.log();
@@ -118,18 +118,18 @@ var obj = { id: "google-link", href: "https://google.com.ua", class: "link" };
 // a) Вирішення без зірочки:
 function wrapStr(str, strTag) {
     return `<${strTag}>${str}</${strTag}>`;
-  }
+}
 console.log(wrapStr(strForWrapStrFunction, strTag));
 // b) Вирішення із зірочкой:
 function wrapStr1(str, strTag, obj) {
-  var result = "";
-  if (str === String(str) && typeof obj === "object" && obj !== null && strTag === String(strTag)) {
-    for (const key in obj) {
-      result += ` ${key}="${obj[key]}"`;
+    var result = "";
+    if (str === String(str) && typeof obj === "object" && obj !== null && strTag === String(strTag)) {
+        for (const key in obj) {
+            result += ` ${key}="${obj[key]}"`;
+        }
+        return `<${strTag}${result}>${str}</${strTag}>`;
+    } else {
+        return "You enter not valid value";
     }
-    return `<${strTag}${result}>${str}</${strTag}>`;
-  } else {
-    return "You enter not valid value";
-  }
 }
 console.log(wrapStr1(strForWrapStrFunction, strTag, obj));
