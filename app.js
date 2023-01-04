@@ -8,10 +8,10 @@
  * var arr = [1, 3, 5];
  * getAverage(arr) має повертати 3.00
  ***/
-var arr1 = [1, 3, 5];
+var arr = [1, 3, 5];
 // a) Перший спосіб вирішення:
-var getAverage = (arr) => (arr.reduce((res, item) => res + item) / arr.length).toFixed(2);
-console.log(getAverage(arr1));
+var getAverage = (arr) => (arr.reduce((res, item) => res + item, 0) / arr.length).toFixed(2);
+console.log(getAverage(arr));
 
 // b) Другий спосіб вирішеняя:
 function getAverage1(arr) {
@@ -27,7 +27,7 @@ function getAverage1(arr) {
         return "You enter not valid value";
     }
 }
-console.log(getAverage1(arr1));
+console.log(getAverage1(arr));
 console.log();
 /***
 /*** 
