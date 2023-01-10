@@ -70,7 +70,7 @@ function processArr(arr) {
     return result;
 }
 
-//Другий варіант вирішення:
+// Другий варіант вирішення:
 function processArr1(arr) {
     if (!Array.isArray(arr) || arr.length === 0) {
         return "Enter valid arguments please";
