@@ -1,13 +1,29 @@
+function createStorage() {
+    let currensiesBackup = [];
+
+    return {
+        getCurrensies: function () {
+            return currensiesBackup;
+        },
+        setCurrensies: function (newCurrensies) {
+            if (!newCurrensies || !newCurrensies.length) { return; }
+            currensiesBackup = newCurrensies;
+        }
+    }
+}
+
+const storage = createStorage();
+
 function renderCureincess(currensies) {
-    let htmlStr = currensies.map(infoAboutСurrency => {
-        return `
+    let htmlStr = currensies.reduce((acc, infoAboutСurrency) => {
+        return acc + `
             <tr>
                 <td>${infoAboutСurrency.currensie}</td>
                 <td>${infoAboutСurrency.rate}</td>
                 <td>${infoAboutСurrency.exchangedate}</td>
                 <td>${infoAboutСurrency.abbreviation}</td>
             </tr>`
-    }).join("");
+    }, "");
     let tboby = document.getElementById("currencies-tbody");
     tboby.innerHTML = htmlStr;
 }
@@ -22,6 +38,17 @@ fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=2023011
                 abbreviation: currensie?.cc
             };
         })
+        storage.setCurrensies(currensies);
         renderCureincess(currensies);
     });
+
+document.getElementById('search').onkeyup = function (e) {
+    const currentSearch = e.currentTarget.value.toLowerCase().trim();
+    const backup = storage.getCurrensies();
+    const filteredCurrensies = backup.filter(function (currensies) {
+        return currensies.currensie.toLowerCase().includes(currentSearch);
+    })
+    console.log(filteredCurrensies);
+    renderCureincess(filteredCurrensies);
+}
 
