@@ -2,10 +2,10 @@ function createStorage() {
     let currensiesBackup = [];
 
     return {
-        getCurrensies: function () {
+        getСurrencies: function () {
             return currensiesBackup;
         },
-        setCurrensies: function (newCurrensies) {
+        setСurrencies: function (newCurrensies) {
             if (!newCurrensies || !newCurrensies.length) { return; }
             currensiesBackup = newCurrensies;
         }
@@ -14,11 +14,11 @@ function createStorage() {
 
 const storage = createStorage();
 
-function renderCureincess(currensies) {
-    let htmlStr = currensies.reduce((acc, infoAboutСurrency) => {
+function renderСurrencies(currencies) {
+    let htmlStr = currencies.reduce((acc, infoAboutСurrency) => {
         return acc + `
             <tr>
-                <td>${infoAboutСurrency.currensie}</td>
+                <td>${infoAboutСurrency.currency}</td>
                 <td>${infoAboutСurrency.rate}</td>
                 <td>${infoAboutСurrency.exchangedate}</td>
                 <td>${infoAboutСurrency.abbreviation}</td>
@@ -30,25 +30,47 @@ function renderCureincess(currensies) {
 
 fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=20230117&json").then
     ((data) => data.json()).then(data => {
-        const currensies = data.map(currensie => {
+        console.log(data);
+        const currencies = data.map(currency => {
             return {
-                currensie: currensie?.txt,
-                rate: currensie?.rate.toFixed(2),
-                exchangedate: currensie?.exchangedate,
-                abbreviation: currensie?.cc
+                currency: currency?.txt,
+                rate: currency?.rate.toFixed(2),
+                exchangedate: currency?.exchangedate,
+                abbreviation: currency?.cc
             };
         })
-        storage.setCurrensies(currensies);
-        renderCureincess(currensies);
+        storage.setСurrencies(currencies);
+        renderСurrencies(currencies);
     });
 
 document.getElementById('search').onkeyup = function (e) {
     const currentSearch = e.currentTarget.value.toLowerCase().trim();
-    const backup = storage.getCurrensies();
-    const filteredCurrensies = backup.filter(function (currensies) {
-        return currensies.currensie.toLowerCase().includes(currentSearch);
+    const backup = storage.getСurrencies();
+    const filteredCurrensies = backup.filter(function (сurrensies) {
+        return сurrensies.currency.toLowerCase().includes(currentSearch);
     })
     console.log(filteredCurrensies);
-    renderCureincess(filteredCurrensies);
+    renderСurrencies(filteredCurrensies);
 }
+
+
+function getRateByDate() {
+    let date = document.getElementById('input-date').value.split('-').join('');
+    fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=' + date + '&json').then(function (data) {
+        return data.json();
+    }).then(function (data) {
+        const currencies = data.map(currency => {
+            return {
+                currency: currency?.txt,
+                rate: currency?.rate.toFixed(2),
+                exchangedate: currency?.exchangedate,
+                abbreviation: currency?.cc
+            };
+        })
+        storage.setСurrencies(currencies);
+        renderСurrencies(currencies);
+    });
+}
+
+
 

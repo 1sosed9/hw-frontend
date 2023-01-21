@@ -8,15 +8,24 @@
     <title>Exchange rates</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-dark m-0">
     <div class="container bg-white p-4">
+        <div class="col-12 box_head">
+            <div class="d-flex justify-content-between box_head">
+                <img src="https://img.freepik.com/premium-photo/3d-illustration-flag-of-ukraine-flag-ukraine-background-closeup-of-the-flag-of-the-ukraine_42071-2234.jpg"
+                alt="image" 
+                class="flag_img rounded">
+                <input type="date" placeholder="Enter date" class="form-control my-3 col-2 m-0 box_date"id="input-date" onchange="getRateByDate()">
+            </div>
+        </div>
         <input type="text" placeholder="Search here" class="form-control my-3" id="search">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Currencie</th>
+                    <th>Currency</th>
                     <th>Rate</th>
                     <th>Exchangedate</th>
                     <th>Abbreviation</th>

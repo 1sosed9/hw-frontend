@@ -1,0 +1,13 @@
+.box_date {
+    margin: 0 !important;
+}
+
+.flag_img {
+    width: 10rem;
+}
+
+.box_head {
+    max-height: 2rem;
+    padding-right: 0;
+    padding-left: 0;
+}
