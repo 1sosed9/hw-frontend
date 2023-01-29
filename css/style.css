@@ -1,8 +1,9 @@
 .box_date {
-    margin: 0 !important;
+    /* margin: 0 !important; */
 }
 
 .flag_img {
+    height: 2rem;
     width: 10rem;
 }
 
@@ -10,4 +11,9 @@
     max-height: 2rem;
     padding-right: 0;
     padding-left: 0;
+}
+
+#table-second {
+    background-color:aqua  !important;
+    width: 50% !important;
 }
