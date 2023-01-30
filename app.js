@@ -62,7 +62,7 @@ function buildAutocomlite(currencies) {
                         currency.reduce((acc, currency) => {
                             acc += `<tr>
                                         <td>${currency.txt}</td>
-                                        <td>${currency.rate}</td>
+                                        <td>${currency.rate.toFixed(2)}</td>
                                         <td>${currency.exchangedate}</td>
                                         <td>${currency.cc}</td>
                                     </tr>`
