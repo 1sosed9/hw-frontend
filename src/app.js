@@ -33,7 +33,7 @@ function Auto_Fuel(brand, model, createdYear, vinCode, engineСapacity, consumpt
 Auto_Fuel.prototype = Object.create(Auto.prototype);
 
 Auto_Fuel.prototype.showFuelConsumption = function () {
-    return console.log`
+    return `
     Auto_Fuel {
         engineСapacity: ${this.engineСapacity},
         consumptionLiters: ${this.consumptionLiters}
@@ -65,4 +65,7 @@ console.log(vinNissan);
 
 let showBatteryConfig = nissanLeaf.showBatteryConfig();
 console.log(showBatteryConfig);
+
+let bmwX_1Info = bmwX_1.showFuelConsumption();
+console.log(bmwX_1Info);
 
